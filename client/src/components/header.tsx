@@ -61,9 +61,9 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/">
-            <a className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            <div className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent cursor-pointer">
               TruthLens
-            </a>
+            </div>
           </Link>
 
           {/* Mobile menu button */}
@@ -78,11 +78,11 @@ export default function Header() {
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/">
-              <a className="text-gray-600 hover:text-green-600 transition-colors">Home</a>
+              <div className="text-gray-600 hover:text-green-600 transition-colors cursor-pointer">Home</div>
             </Link>
             {user && user.role === 'admin' && (
               <Link href="/admin">
-                <a className="text-gray-600 hover:text-green-600 transition-colors">Admin</a>
+                <div className="text-gray-600 hover:text-green-600 transition-colors cursor-pointer">Admin</div>
               </Link>
             )}
             {!isLoading && (
@@ -120,11 +120,11 @@ export default function Header() {
           <nav className="md:hidden mt-4 py-2 px-2 bg-gray-50 rounded-md">
             <div className="flex flex-col space-y-3">
               <Link href="/">
-                <a className="px-3 py-2 rounded-md hover:bg-gray-100 text-gray-700">Home</a>
+                <div className="px-3 py-2 rounded-md hover:bg-gray-100 text-gray-700 cursor-pointer">Home</div>
               </Link>
               {user && user.role === 'admin' && (
                 <Link href="/admin">
-                  <a className="px-3 py-2 rounded-md hover:bg-gray-100 text-gray-700">Admin</a>
+                  <div className="px-3 py-2 rounded-md hover:bg-gray-100 text-gray-700 cursor-pointer">Admin</div>
                 </Link>
               )}
               {!isLoading && (
@@ -145,9 +145,9 @@ export default function Header() {
                     </>
                   ) : (
                     <Link href="/auth">
-                      <a className="px-3 py-2 bg-green-600 rounded-md text-white font-medium text-center">
+                      <div className="px-3 py-2 bg-green-600 rounded-md text-white font-medium text-center cursor-pointer">
                         Login / Register
-                      </a>
+                      </div>
                     </Link>
                   )}
                 </>
