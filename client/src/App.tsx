@@ -10,7 +10,8 @@ import ArticleDetailsPage from "./pages/article-details";
 import AuthPage from "./pages/auth-page";
 import AdminPage from "./pages/admin-page";
 import Header from "./components/header";
-import { AuthProvider } from "@/hooks/use-auth";
+import { AuthProvider } from "./hooks/use-auth";
+import { ProtectedRoute } from "./lib/protected-route";
 
 function Router() {
   return (
@@ -20,7 +21,7 @@ function Router() {
       <Route path="/topics/:slug" component={TopicDetailsPage} />
       <Route path="/articles/:slug" component={ArticleDetailsPage} />
       <Route path="/auth" component={AuthPage} />
-      <Route path="/admin" component={AdminPage} />
+      <ProtectedRoute path="/admin" component={AdminPage} adminOnly={true} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

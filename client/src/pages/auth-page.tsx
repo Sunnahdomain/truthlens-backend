@@ -47,7 +47,14 @@ export default function AuthPage() {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    registerMutation.mutate(formData);
+    const registerData = {
+      username: formData.username,
+      password: formData.password,
+      email: `${formData.username}@example.com`, // Add a default email since our schema requires it
+      fullName: formData.name,
+      role: "user" as const, // Set role to user by default
+    };
+    registerMutation.mutate(registerData);
   };
 
   return (
