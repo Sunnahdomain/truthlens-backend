@@ -8,7 +8,9 @@ import HomePage from "@/pages/home-page";
 import TopicDetailsPage from "./pages/topic-details";
 import ArticleDetailsPage from "./pages/article-details";
 import AuthPage from "./pages/auth-page";
+import AdminPage from "./pages/admin-page";
 import Header from "./components/header";
+import { AuthProvider } from "@/hooks/use-auth";
 
 function Router() {
   return (
@@ -18,6 +20,7 @@ function Router() {
       <Route path="/topics/:slug" component={TopicDetailsPage} />
       <Route path="/articles/:slug" component={ArticleDetailsPage} />
       <Route path="/auth" component={AuthPage} />
+      <Route path="/admin" component={AdminPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
@@ -41,12 +44,14 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <AppLayout>
-          <Router />
-        </AppLayout>
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <AppLayout>
+            <Router />
+          </AppLayout>
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

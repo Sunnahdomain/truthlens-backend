@@ -1,13 +1,9 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { useQuery } from "@tanstack/react-query";
 import { User } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/lib/queryClient";
 import { MenuIcon, UserCircle, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
