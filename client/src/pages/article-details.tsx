@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRoute, Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,8 +21,8 @@ export default function ArticleDetailsPage() {
   });
 
   // Format date to a more readable format
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (dateValue: Date | string) => {
+    const date = typeof dateValue === 'string' ? new Date(dateValue) : dateValue;
     return date.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
@@ -80,10 +81,10 @@ export default function ArticleDetailsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto">
-        <Link href={`/topics/${article.topicSlug}`}>
+        <Link href={`/topics/${article.topicId ? article.topicId : ''}`}>
           <Button variant="ghost" className="mb-4">
             <ChevronLeft className="h-4 w-4 mr-2" />
-            Back to {article.topicName}
+            Back to Topic
           </Button>
         </Link>
 
@@ -98,16 +99,16 @@ export default function ArticleDetailsPage() {
           </div>
           <div className="flex items-center">
             <User className="h-4 w-4 mr-1" />
-            {article.authorName}
+            Author ID: {article.authorId || 'Unknown'}
           </div>
           <div className="flex items-center">
             <Clock className="h-4 w-4 mr-1" />
-            {article.readTime} min read
+            {Math.ceil(article.content.length / 1000)} min read
           </div>
         </div>
         
         <div className="mb-8">
-          <p className="text-lg font-medium text-gray-700 mb-4">{article.excerpt}</p>
+          <p className="text-lg font-medium text-gray-700 mb-4">{article.description || ''}</p>
           
           <div className="prose prose-green max-w-none">
             {article.content.split('\n\n').map((paragraph, idx) => (

@@ -21,8 +21,8 @@ export default function TopicDetailsPage() {
   });
 
   // Format date to a more readable format
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (dateValue: Date | string) => {
+    const date = typeof dateValue === 'string' ? new Date(dateValue) : dateValue;
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
@@ -108,7 +108,7 @@ export default function TopicDetailsPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 line-clamp-2">{article.excerpt}</p>
+                <p className="text-gray-700 line-clamp-2">{article.description || ''}</p>
               </CardContent>
             </Card>
           ))
